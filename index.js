@@ -1,12 +1,15 @@
-const ApiAiAssistant = require('actions-on-google').ApiAiAssistant;
+const { Actionary } = require("./src/services/actionary");
 
-const intents = [
-    'hello_world',
+const ACTIONS = [
+  "cloud.actions.hello_world",
 ];
 
 exports.agent = function(request, response) {
-    let assistant = new ApiAiAssistant({ request, response });
-    let actionMap = new Map();
-    intents.forEach(intent => actionMap.set(intent, require(`./${intents}`)));
-    assistant.handleRequest(actionMap);
+  console.log("starting the agent...");
+
+  new Actionary({ request, response })
+    .use(Actionary.sdk.DialogflowApp)
+    .setActions(ACTIONS)
+    .i18n()
+    .start();
 };

@@ -1,31 +1,36 @@
 {
-    "name": "actions-on-google-project-template",
-    "version": "1.0.0",
-    "description": "A project starter for Actions on Google applications.",
-    "main": "index.js",
-    "scripts": {
-        "start": "npm run test && npm run grok",
-        "test": "npm run fun -- deploy agent --trigger-http",
-        "logs": "npm run fun -- logs read",
-        "deploy": "gcloud beta functions deploy agent --stage-bucket actions-on-google-project-template/ --trigger-http",
-        "fun": "functions",
-        "grok": "ngrok http 8010"
-    },
-    "keywords": [
-        "chatbot",
-        "assistant",
-        "google-assistant",
-        "actions-on-google",
-        "google-home"
-    ],
-    "author": "Wassim Chegham <contact@wassimchegham.com>",
-    "license": "MIT",
-    "devDependencies": {
-        "ngrok": "^2.2.15",
-        "@google-cloud/functions-emulator": "^1.0.0-alpha.22"
-    },
-    "dependencies": {
-        "actions-on-google": "^1.2.0",
-        "node-fetch": "^1.7.1"
-    }
+  "name": "actions-on-google-project-template",
+  "version": "1.0.0",
+  "description": "A project starter for Actions on Google applications.",
+  "main": "index.js",
+  "scripts": {
+    "emulator:start": "functions start",
+    "emulator:deploy": "functions deploy agent --entry-point=agent --trigger-http -p=[YOUR_PROJECT_ID]",
+    "deploy": "gcloud beta functions deploy agent --source https://source.developers.google.com/projects/[YOUR_PROJECT_ID]/repos/default/moveable-alises/master --entry-point agent --trigger-http",
+    "emulator:inspect": "functions inspect agent",
+    "emulator:logs": "functions logs read",
+    "ngrok": "ngrok http 8010",
+    "test": "jest"
+  },
+  "keywords": [
+    "chatbot",
+    "assistant",
+    "google-assistant",
+    "actions-on-google",
+    "google-home"
+  ],
+  "author": "Wassim Chegham <contact@wassimchegham.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@google-cloud/functions-emulator": "^1.0.0-alpha.25",
+    "ngrok": "^2.2.21",
+    "debug": "^3.1.0",
+    "jest": "^21.2.1"
+  },
+  "dependencies": {
+    "@manekinekko/actions-on-google-i18n": "^1.3.5",
+    "actions-on-google": "^1.5.1",
+    "moment": "^2.19.1",
+    "node-fetch": "^1.7.2"
+  }
 }
