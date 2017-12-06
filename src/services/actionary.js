@@ -47,14 +47,15 @@ class Actionary {
   }
 
   i18n(config = null) {
+    let _i18n = i18n;
     if (config) {
-      i18n = i18n.configure({
+      _i18n = i18n.configure({
         directory: `${__dirname}/src/locales`,
         defaultFile: `${__dirname}/src/locales/index.json`,
         defaultLocale: 'en-US',
       });
     }
-    i18n.use(this.assistant);
+    _i18n.use(this.assistant);
   }
 
   patch(instance) {
